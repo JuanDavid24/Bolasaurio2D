@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Movement : MonoBehaviour   
+public class Player : MonoBehaviour   
 {
     private int movX = 0;
     private int movY = 0;
@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     private bool isSprinting;
     private bool isGrounded;
     private float isWalking;
+
+    public int potions = 0;
 
     Animator animator;
 
