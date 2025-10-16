@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player : MonoBehaviour   
 {
     private int movX = 0;
-    private int movY = 0;
     private Vector2 mov = new Vector2(0, 0);
     [SerializeField] private float speed = 0;
     private float baseSpeed;
@@ -16,6 +15,12 @@ public class Player : MonoBehaviour
     private bool isSprinting;
     private bool isGrounded;
     private float isWalking;
+    bool isTouchingWall;
+
+    [Header("Wall Check")]
+    [SerializeField] private Transform wallCheckBottom;
+    [SerializeField] private Transform wallCheckTop;
+    [SerializeField] private float wallCheckDistance = 0.3f;
 
     public int potions = 0;
 
@@ -46,7 +51,7 @@ public class Player : MonoBehaviour
         else 
         { 
             movX = 0; 
-        }
+        }        
     }
 
     private void Sprint (float multSpeed)
@@ -61,10 +66,29 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void detectXMovement()
+    private void FlipSprite() 
+    {
+        if (movX != 0) 
+        {
+            transform.localScale = new Vector3(movX, 1, 1); 
+        }
+    }
+
+    private void DetectXMovement()
     {
         isWalking = rb.velocity.x != 0 ? 1 : 0;
         animator.SetFloat("xVelocity", isWalking);
+    }
+
+    private bool CheckWallCollision(Transform wallcheck, float wallCheckDistance, bool debug=false)
+    {
+        bool wallCollision = Physics2D.Raycast(wallcheck.position, Vector2.right * Mathf.Sign(movX), wallCheckDistance, LayerMask.GetMask("Ground"));
+        if(debug)
+        {
+            Color color = wallCollision ? Color.red : Color.green;
+            Debug.DrawRay(wallcheck.position, Vector2.right * Mathf.Sign(movX) * wallCheckDistance, color);
+        }
+        return wallCollision;
     }
 
     void Update()
@@ -76,17 +100,19 @@ public class Player : MonoBehaviour
         }
 
         // Movimiento
-        detectXMovement();
+        DetectXMovement();
 
         Sprint(multSpeed);
         HorizontalMovement();
+        FlipSprite();       
     }
     private void FixedUpdate()
     {
-        mov = new Vector2(movX, movY);
-        mov = mov.normalized;
+        bool isTouchingWallBottom = CheckWallCollision(wallCheckBottom, wallCheckDistance, true);
+        bool isTouchingWallTop = CheckWallCollision(wallCheckTop, wallCheckDistance, true);
+        bool isTouchingWall = isTouchingWallBottom || isTouchingWallTop;
         //rb.AddForce(mov * speed * Time.fixedDeltaTime);
         //rb.velocity = mov * speed * Time.fixedDeltaTime; // en unity 6 ya no funciona -.-
-        rb.velocity = new Vector2(mov.x * speed, rb.velocity.y);
+        rb.velocity = isTouchingWall ? new Vector2(0, rb.velocity.y) : new Vector2(movX * speed, rb.velocity.y);
     }
 }
