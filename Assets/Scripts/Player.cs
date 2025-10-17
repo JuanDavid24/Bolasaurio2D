@@ -15,13 +15,6 @@ public class Player : MonoBehaviour
     private bool isSprinting;
     private bool isGrounded;
     private float isWalking;
-    bool isTouchingWall;
-
-    [Header("Wall Check")]
-    [SerializeField] private Transform wallCheckBottom;
-    [SerializeField] private Transform wallCheckTop;
-    [SerializeField] private float wallCheckDistance = 0.3f;
-
     public int potions = 0;
 
     Animator animator;
@@ -80,17 +73,6 @@ public class Player : MonoBehaviour
         animator.SetFloat("xVelocity", isWalking);
     }
 
-    private bool CheckWallCollision(Transform wallcheck, float wallCheckDistance, bool debug=false)
-    {
-        bool wallCollision = Physics2D.Raycast(wallcheck.position, Vector2.right * Mathf.Sign(movX), wallCheckDistance, LayerMask.GetMask("Ground"));
-        if(debug)
-        {
-            Color color = wallCollision ? Color.red : Color.green;
-            Debug.DrawRay(wallcheck.position, Vector2.right * Mathf.Sign(movX) * wallCheckDistance, color);
-        }
-        return wallCollision;
-    }
-
     void Update()
     {   
         // Salto
@@ -108,11 +90,8 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        bool isTouchingWallBottom = CheckWallCollision(wallCheckBottom, wallCheckDistance, true);
-        bool isTouchingWallTop = CheckWallCollision(wallCheckTop, wallCheckDistance, true);
-        bool isTouchingWall = isTouchingWallBottom || isTouchingWallTop;
         //rb.AddForce(mov * speed * Time.fixedDeltaTime);
         //rb.velocity = mov * speed * Time.fixedDeltaTime; // en unity 6 ya no funciona -.-
-        rb.velocity = isTouchingWall ? new Vector2(0, rb.velocity.y) : new Vector2(movX * speed, rb.velocity.y);
+        rb.velocity = new Vector2(movX * speed, rb.velocity.y);
     }
 }
