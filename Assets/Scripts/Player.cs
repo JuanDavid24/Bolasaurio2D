@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private float isWalking;
     public int potions = 0;
+    GameObject groundCheckLeft, groundCheckRight;
 
     Animator animator;
 
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
         multSpeed = speed * speedFactor;
 
         animator = GetComponent<Animator>();
+
+        groundCheckLeft = transform.GetChild(0).gameObject;
+        groundCheckRight = transform.GetChild(1).gameObject;
     }
 
     private void HorizontalMovement()
@@ -67,6 +71,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void DetectIsGrounded()
+    { 
+        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.transform.position, Vector2.down, 0.1f);
+        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.transform.position, Vector2.down, 0.1f);
+        isGrounded = isGroundedLeft || isGroundedRight;
+    }
+
     private void DetectXMovement()
     {
         isWalking = rb.velocity.x != 0 ? 1 : 0;
@@ -78,7 +89,9 @@ public class Player : MonoBehaviour
         // Salto
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Jump();
+            DetectIsGrounded();
+            if (isGrounded)
+                Jump();
         }
 
         // Movimiento

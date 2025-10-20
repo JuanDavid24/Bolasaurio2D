@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
 {
     private int ta;
     public float timeLeft;
-    private bool timerOn;
+    public bool timerOn;
 
     // Start is called before the first frame update
     void Start()
@@ -15,18 +15,24 @@ public class Timer : MonoBehaviour
         ta = (int)timeLeft + 1;
     }
 
-    private void TimeCheck()
+    public void Restart(float newTime)
+    {
+        timerOn = false;
+        timeLeft = newTime;
+        timerOn = true;
+    }
+    private void CheckTime()
     {
         if (timerOn)
         {
             if (timeLeft > 0)
             { 
-                timeLeft -= Time.deltaTime; 
+                timeLeft -= Time.deltaTime;
                 //Debug.Log("Tiempo restante: " + (int)timeLeft + "segundos");
             }
             else
             {
-                Debug.Log("Se acabo el tiempo! -0-");
+                Debug.Log("Se acabo el tiempo");
                 timeLeft = 0;
                 timerOn = false;
             }
@@ -36,6 +42,6 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeCheck(); 
+        CheckTime(); 
     }
 }

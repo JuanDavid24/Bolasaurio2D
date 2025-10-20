@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 20f;
     [SerializeField] private int damage = 15;
     [SerializeField] private float lifeTime = 2f;
+    public int direction = 1;
     private Rigidbody2D rb;
     void Start()
     {
@@ -16,7 +17,7 @@ public class Bullet : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody2D>();
         }
         rb.gravityScale = 0;
-        rb.velocity = Vector3.right * speed;
+        rb.velocity = Vector3.right * direction * speed;
 
         Destroy(gameObject, lifeTime);
     }
@@ -30,5 +31,5 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject, 0);
         }
     }
-
 }
+ 

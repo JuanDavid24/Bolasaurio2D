@@ -6,18 +6,17 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private GameObject obj;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(obj, transform.position, Quaternion.identity);
+            ShootBullet();
         }
+    }
+    private void ShootBullet()
+    {
+            GameObject newBullet = Instantiate(obj, transform.position, Quaternion.identity);
+            newBullet.GetComponent<Bullet>().direction = transform.localScale.x > 0 ? 1 : -1;
     }
 }
