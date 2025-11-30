@@ -38,10 +38,4 @@ public class ItemManager : MonoBehaviour
         foreach (KeyValuePair<GameObject, int> item in inventory)
             print("Item: " + item.Key + " - Cantidad: " + item.Value);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

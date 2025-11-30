@@ -1,38 +1,69 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour   
+public class Player : MonoBehaviour
 {
     private int movX = 0;
     private Vector2 mov = new Vector2(0, 0);
     [SerializeField] private float speed = 0;
     private float baseSpeed;
     private float multSpeed;
-    [SerializeField] private float speedFactor = 1.5f;
-    [SerializeField] private float jumpForce = 12f;
+    [SerializeField] private float _speedFactor = 1.5f;
+    [SerializeField] private float _jumpForce = 12f;
+    [SerializeField] private int _maxFallVelocity = 2;
+    [SerializeField] private float _jumpHangTimeThreshold = 0.5f;
+    public bool isJumping;
+    public bool isFalling;
     private bool isSprinting;
-    private bool isGrounded;
+    private bool _isGrounded;
+    private float _defaultGravity;
+    public bool IsGrounded => _isGrounded;
+    public float DefaultGravity => _defaultGravity;
+    public float JumpForce => _jumpForce;
+    public int MaxFallVelocity => _maxFallVelocity;
+    public float JumpHangTimeThreshold => _jumpHangTimeThreshold;
+
     private float isWalking;
+    private bool isAttacked;
+    [SerializeField] private float knockbackForce;
     public int potions = 0;
     GameObject groundCheckLeft, groundCheckRight;
+    [SerializeField] private LayerMask groundLayer;
 
-    Animator animator;
+    public Animator animator { get; private set; }
+    public Rigidbody2D rb { get; private set; }
 
-    private Rigidbody2D rb;
+    private HpPlayer hpManager;
 
-    void Start()
+    private PlayerState _currentState;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        hpManager = GetComponent<HpPlayer>();
+        animator = GetComponent<Animator>();
+
+        _currentState = new PlayerStateGrounded(this);
 
         baseSpeed = speed;
-        multSpeed = speed * speedFactor;
-
-        animator = GetComponent<Animator>();
+        multSpeed = speed * _speedFactor;
 
         groundCheckLeft = transform.GetChild(0).gameObject;
         groundCheckRight = transform.GetChild(1).gameObject;
+
+        _defaultGravity = rb.gravityScale;
+    }
+
+    public void TransitionToState(PlayerState newState)
+    {
+        if (_currentState != newState)
+        {
+            _currentState.ExitState();
+            _currentState = newState;
+            _currentState.EnterState();
+        }
     }
 
     private void HorizontalMovement()
@@ -57,12 +88,6 @@ public class Player : MonoBehaviour
         speed = isSprinting ? multSpeed : baseSpeed;
     }
 
-    private void Jump()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, 0f); // resetea velocidad vertical
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-    }
-
     private void FlipSprite() 
     {
         if (movX != 0) 
@@ -71,11 +96,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DetectIsGrounded()
+    private void CheckGrounded()
     { 
-        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.transform.position, Vector2.down, 0.1f);
-        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.transform.position, Vector2.down, 0.1f);
-        isGrounded = isGroundedLeft || isGroundedRight;
+        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.transform.position, Vector2.down, 0.1f, groundLayer);
+        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.transform.position, Vector2.down, 0.1f, groundLayer);
+        _isGrounded = isGroundedLeft || isGroundedRight;
     }
 
     private void DetectXMovement()
@@ -84,15 +109,21 @@ public class Player : MonoBehaviour
         animator.SetFloat("xVelocity", isWalking);
     }
 
+    public void OnAttacked(int dmg, Vector2 enemyPos)
+    {
+        isAttacked = true;
+        hpManager.TakeDamage(dmg);
+        Vector2 knockbackDir = (new Vector2(transform.position.x, transform.position.y) - enemyPos).normalized;
+        print("enemypos " + enemyPos);
+        print("knockback vector: " + knockbackDir * 30f);
+
+        rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+    }
+
     void Update()
-    {   
-        // Salto
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            DetectIsGrounded();
-            if (isGrounded)
-                Jump();
-        }
+    {
+        _currentState.HandleInput();
+        Debug.Log(_currentState.ToString());
 
         // Movimiento
         DetectXMovement();
@@ -103,8 +134,9 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //rb.AddForce(mov * speed * Time.fixedDeltaTime);
-        //rb.velocity = mov * speed * Time.fixedDeltaTime; // en unity 6 ya no funciona -.-
-        rb.velocity = new Vector2(movX * speed, rb.velocity.y);
+        CheckGrounded();
+
+        if(!isAttacked)
+            rb.velocity = new Vector2(movX * speed, rb.velocity.y);
     }
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3636757292652040131}
   - component: {fileID: 2873152668373947826}
   - component: {fileID: 4707367291381305946}
+  - component: {fileID: 6149985837068515833}
   - component: {fileID: 5708720715982512251}
   m_Layer: 0
   m_Name: Orc
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4380097298539421602}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 624be7d0163f52c49acece4d16463620, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  hp: 0
 --- !u!114 &3636757292652040131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLeft: 0
   timerOn: 0
+--- !u!114 &6149985837068515833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380097298539421602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81461f7d4783d504f9d1224ccb58b3c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
+  player: {fileID: 0}
+  patrolSpeed: 3
+  chaseSpeed: 4
+  distance: 3
 --- !u!50 &5708720715982512251
 Rigidbody2D:
   serializedVersion: 4

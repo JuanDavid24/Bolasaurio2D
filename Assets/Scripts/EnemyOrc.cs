@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class EnemyOrc : MonoBehaviour
 {
-    private bool playerDetected = false;
     private Rigidbody2D rb;
     private int movX = 1;
     private int movXPrev;
+    
     [SerializeField] float patrolSpeed;
     [SerializeField] float maxWalkTime;
     Timer patrolTimer;
+    float isWalking;
+
     Animator animator;
+    public bool isAttacking = false;
+    public int damage = 1;
 
     private void Start()
     {
@@ -19,16 +23,6 @@ public class EnemyOrc : MonoBehaviour
         animator = GetComponent<Animator>();
         patrolTimer = GetComponent<Timer>();
         patrolTimer.timeLeft = maxWalkTime;
-    }
-    private void Patrol()
-    {
-        if (patrolTimer.timerOn) return;
-        if (movX == 0)
-        {
-            movX = -movXPrev;
-            patrolTimer.Restart(maxWalkTime);
-        }
-        else StandStill(1f);
     }
 
     private void StandStill(float time)
@@ -38,27 +32,16 @@ public class EnemyOrc : MonoBehaviour
             patrolTimer.Restart(time);
     }
 
-    private void Attack()
+    public void Attack()
     {
-        DetectPlayer();
-        //Debug.Log("player detected " + playerDetected);
+        if (isAttacking) return;
 
-        // Probando animacion
-        if (Input.GetKey(KeyCode.X))
-        {
-            animator.SetTrigger("attack");
-        }
-
-        //if (playerDetected)
-        //{
-        //    animator.SetTrigger("attack");
-        //}
+        isAttacking = true;
+        animator.SetTrigger("attack");
+        rb.velocity = Vector2.zero;
+        return;
     }
 
-    private void DetectPlayer()
-    {
-        // TODO
-    }
     private void FlipSprite()
     {
         if (movX != 0)
@@ -66,19 +49,20 @@ public class EnemyOrc : MonoBehaviour
             transform.localScale = new Vector3(movX, 1, 1);
         }
     }
-    private void DetectXMovement()
+
+    private void DetectWalking()
     {
-        float isWalking = rb.velocity.x != 0 ? 1 : 0;
+        isWalking = rb.velocity.x != 0 ? 1 : 0;
         animator.SetFloat("xVelocity", isWalking);
+        movX = (int) Mathf.Sign(rb.velocity.x);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Patrol();
+        //print("isAttacking" + isAttacking);
+        DetectWalking();
         FlipSprite();
-        Attack();
-        rb.velocity = new Vector2 (patrolSpeed * movX, 0);
-        DetectXMovement();
+
     }
 }

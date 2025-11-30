@@ -1,29 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class Hp : MonoBehaviour
 {
-    [SerializeField] private int maxHP = 100;
-    private int hp;
+    [SerializeField] protected int maxHP = 6;
+    public int hp;
     bool isAlive;
 
     // Start is called before the first frame update
-    private void Start()
+    protected virtual void Awake()
     {
-        ChangeHp(maxHP);
+        if(hp == 0) 
+            ChangeHp(maxHP);
+
         print("Vida actual: " + hp);
         isAlive = true;
     }
 
-    void ChangeHp(int value)
+    public void ChangeHp(int value)
     {
         int newHp = hp + value;
         hp = Mathf.Clamp(newHp, 0, maxHP);
     }
 
-    public void takeDamage(int dmg)
+    public virtual void TakeDamage(int dmg)
     {
         ChangeHp(-dmg);
         Debug.Log("Se ha recibido daño: " + dmg + ". Vida restante: " + hp);
