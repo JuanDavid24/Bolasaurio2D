@@ -13,6 +13,7 @@ namespace Assets.Scripts
 
         public override void HandleInput()
         {
+            base.HandleInput();
             //// detect landing
             if (_player.IsGrounded)
             {

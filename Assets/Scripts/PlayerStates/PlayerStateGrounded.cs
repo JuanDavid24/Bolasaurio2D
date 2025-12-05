@@ -13,9 +13,10 @@ namespace Assets.Scripts
         }
         public override void HandleInput() 
         {
+            base.HandleInput();
             if (!_player.IsGrounded)
             {
-                _player.TransitionToState(new PlayerStateFalling (_player));
+                _player.TransitionToState(new PlayerStateFalling(_player));
                 return;
             }
             if (Input.GetKeyDown(KeyCode.Space))

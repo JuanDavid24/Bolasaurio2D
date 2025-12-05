@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int movX = 0;
-    private Vector2 mov = new Vector2(0, 0);
-    [SerializeField] private float speed = 0;
+    private int _movX = 0;
+    public int MovX => _movX;
+
+    [SerializeField] private float _walkSpeed = 0;
+    public float WalkSpeed => _walkSpeed;
+
     private float baseSpeed;
     private float multSpeed;
     [SerializeField] private float _speedFactor = 1.5f;
@@ -47,8 +50,8 @@ public class Player : MonoBehaviour
 
         _currentState = new PlayerStateGrounded(this);
 
-        baseSpeed = speed;
-        multSpeed = speed * _speedFactor;
+        baseSpeed = _walkSpeed;
+        multSpeed = _walkSpeed * _speedFactor;
 
         groundCheckLeft = transform.GetChild(0).gameObject;
         groundCheckRight = transform.GetChild(1).gameObject;
@@ -66,33 +69,33 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HorizontalMovement()
+    private void DetectXInput()
     {
         // movimiento horizontal
         if (Input.GetKey(KeyCode.D))
         {
-            movX = 1;
+            _movX = 1;
         }
         else if (Input.GetKey(KeyCode.A)) {
-            movX = -1;
+            _movX = -1;
         }
         else 
         { 
-            movX = 0; 
+            _movX = 0; 
         }        
     }
 
     private void Sprint (float multSpeed)
     {
         isSprinting = Input.GetKey(KeyCode.LeftShift);
-        speed = isSprinting ? multSpeed : baseSpeed;
+        _walkSpeed = isSprinting ? multSpeed : baseSpeed;
     }
 
     private void FlipSprite() 
     {
-        if (movX != 0) 
+        if (_movX != 0) 
         {
-            transform.localScale = new Vector3(movX, 1, 1); 
+            transform.localScale = new Vector3(_movX, 1, 1); 
         }
     }
 
@@ -113,11 +116,13 @@ public class Player : MonoBehaviour
     {
         isAttacked = true;
         hpManager.TakeDamage(dmg);
-        Vector2 knockbackDir = (new Vector2(transform.position.x, transform.position.y) - enemyPos).normalized;
         print("enemypos " + enemyPos);
-        print("knockback vector: " + knockbackDir * 30f);
 
-        rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+        animator.SetTrigger("Hurted");
+        //Vector2 knockbackDir = (new Vector2(transform.position.x, transform.position.y) - enemyPos).normalized;
+        //print("knockback vector: " + knockbackDir * 30f);
+
+        //rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
     }
 
     void Update()
@@ -129,14 +134,11 @@ public class Player : MonoBehaviour
         DetectXMovement();
 
         Sprint(multSpeed);
-        HorizontalMovement();
+        DetectXInput();
         FlipSprite();       
     }
     private void FixedUpdate()
     {
-        CheckGrounded();
-
-        if(!isAttacked)
-            rb.velocity = new Vector2(movX * speed, rb.velocity.y);
+        CheckGrounded();     
     }
 }

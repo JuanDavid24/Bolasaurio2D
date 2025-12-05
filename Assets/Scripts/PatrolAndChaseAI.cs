@@ -15,12 +15,12 @@ public class PatrolAndChaseAI : MonoBehaviour
     private float playerDistance;
     private Transform currentTarget;
     private Rigidbody2D rb;
-    EnemyOrc enemy;
+    EnemyController enemy;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        enemy = GetComponent<EnemyOrc>();
+        enemy = GetComponent<EnemyController>();
         currentTarget = pointA;
     }
 

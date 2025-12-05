@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Assets.Scripts
 {
@@ -18,6 +17,7 @@ namespace Assets.Scripts
 
         public override void HandleInput()
         {
+            base.HandleInput();
             LimitFallGravity();
             
             // detect landing

@@ -13,6 +13,8 @@ namespace Assets.Scripts
 
         public override void HandleInput()
         {
+            base.HandleInput();
+
             //// detect landing
             //if (_player.IsGrounded)
             //{
@@ -22,7 +24,7 @@ namespace Assets.Scripts
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                _player.TransitionToState(new PlayerStateFalling(_player, 3f));
+                _player.TransitionToState(new PlayerStateFalling(_player, 3.5f));
                 return;
             }
             if (ReachedJumpApex)

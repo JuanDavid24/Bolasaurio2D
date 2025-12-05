@@ -13,7 +13,7 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Colision con enemigo: " + collision.gameObject.name);
-            player.OnAttacked(collision.gameObject.GetComponent<EnemyOrc>().damage, collision.transform.position);
+            player.OnAttacked(collision.gameObject.GetComponent<EnemyController>().damage, collision.transform.position);
 
         }
     }
