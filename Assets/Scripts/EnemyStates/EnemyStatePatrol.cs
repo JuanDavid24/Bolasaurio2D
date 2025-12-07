@@ -21,12 +21,12 @@ namespace Assets.Scripts
         public override void HandleState()
         {
             DetectPlayer();
+            FlipSpriteAuto();
 
             float distanceToTarget = Vector2.Distance(_currentTarget.position, _enemy.transform.position);
             if (distanceToTarget < 0.5f)
             {
                 _currentTarget = ToggleTarget;
-                FlipSprite();
             }
             MoveTowardsX(_currentTarget.position);
             AnimateWalking();
@@ -47,11 +47,6 @@ namespace Assets.Scripts
             _enemy.Rb.velocity = new Vector2(direction * _enemy.PatrolSpeed, _enemy.Rb.velocity.y);
         }
 
-        private void FlipSprite() 
-        {
-            Vector3 prevScale = _enemy.transform.localScale;
-            _enemy.transform.localScale = new Vector3(-prevScale.x, prevScale.y, prevScale.z);
-        }
         private Transform ToggleTarget => _currentTarget == _pointA ? _pointB : _pointA;
     }
 }

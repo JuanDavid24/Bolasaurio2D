@@ -27,5 +27,15 @@ namespace Assets.Scripts.EnemyStates
             float isWalking = _enemy.Rb.velocity.x != 0 ? 1 : 0;
             _enemy.Anim.SetFloat("xVelocity", isWalking);
         }
+
+        protected virtual void FlipSpriteAuto()
+        {
+            float dir = Mathf.Sign(_enemy.Rb.velocity.x);
+            if (dir != 0)
+            {
+                Vector3 prevScale = _enemy.transform.localScale;
+                _enemy.transform.localScale = new Vector3(dir * Mathf.Abs(prevScale.x), prevScale.y, prevScale.z);
+            }
+        }
     }
 }

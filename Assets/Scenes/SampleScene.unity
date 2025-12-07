@@ -15641,11 +15641,11 @@ PrefabInstance:
       objectReference: {fileID: 1112212355}
     - target: {fileID: 1885001639333187082, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: _sightDistance
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1885001639333187082, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: _attackDistance
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1913084437892787938, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: m_Enabled
@@ -15685,10 +15685,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5732256940085134572, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467640982147590109, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
-      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7672966347409137272, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}

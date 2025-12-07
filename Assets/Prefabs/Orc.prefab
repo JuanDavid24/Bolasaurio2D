@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1280766099, guid: e3d8766a96a6d884a856956b985e7c19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -197,8 +197,9 @@ MonoBehaviour:
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   _patrolSpeed: 3.5
+  _sightDistance: 0
+  _attackDistance: 0
   player: {fileID: 0}
-  isAttacking: 0
   damage: 1
 --- !u!114 &4854039576412748311
 MonoBehaviour:
@@ -215,6 +216,7 @@ MonoBehaviour:
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   _patrolSpeed: 3.5
+  _sightDistance: 0
+  _attackDistance: 0
   player: {fileID: 0}
-  isAttacking: 0
   damage: 1
