@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.EnemyStates
+﻿using System.Diagnostics;
+
+namespace Assets.Scripts.EnemyStates
 {
     public class EnemyStateManager
     {

@@ -6,29 +6,41 @@ namespace Assets.Scripts
 {
     public class EnemyStatePatrol : EnemyState
     {
-        private Transform _player, _pointA, _pointB, _currentTarget;
-        private float _sightDistance = 10f;
+        private Transform _pointA, _pointB, _currentTarget;
+        private float playerDistance;
+
         public EnemyStatePatrol(EnemyController enemy, EnemyStateManager stateManager) : base(enemy, stateManager) { }
 
-        public override void EnterState()
+        public override void EnterState() 
         {
+            base.EnterState();
             _pointA = _enemy.pointA;
             _pointB = _enemy.pointB;
             _currentTarget = _pointA;
         }
         public override void HandleState()
         {
+            DetectPlayer();
+
             float distanceToTarget = Vector2.Distance(_currentTarget.position, _enemy.transform.position);
-            //Debug.Log("distancia "+ distanceToTarget);
             if (distanceToTarget < 0.5f)
             {
                 _currentTarget = ToggleTarget;
-                //Debug.Log("current target " + _currentTarget);
                 FlipSprite();
             }
             MoveTowardsX(_currentTarget.position);
+            AnimateWalking();
         }
-        private Transform ToggleTarget => _currentTarget == _pointA ? _pointB : _pointA;
+
+        private void DetectPlayer()
+        {
+            playerDistance = Vector3.Distance(_player.position, _enemy.transform.position);
+
+            if (playerDistance < _enemy.SightDistance)
+            {
+                _stateManager.TransitionToState(new EnemyStateChase(_enemy, _stateManager));
+            }
+        }
         private void MoveTowardsX(Vector2 target)
         {
             float direction = Mathf.Sign(target.x - _enemy.transform.position.x);
@@ -40,5 +52,6 @@ namespace Assets.Scripts
             Vector3 prevScale = _enemy.transform.localScale;
             _enemy.transform.localScale = new Vector3(-prevScale.x, prevScale.y, prevScale.z);
         }
+        private Transform ToggleTarget => _currentTarget == _pointA ? _pointB : _pointA;
     }
 }

@@ -7,58 +7,51 @@ public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D Rb { get; private set; }
     public Animator Anim { get; private set; }
-    public Transform Ch { get; private set; }
 
-    //[Header("Patrol")]
+    [Header("Patrol")]
     public Transform pointA;
     public Transform pointB;
     [SerializeField] private float _patrolSpeed;
-    private int _movX = -1;
-    private int _movXPrev;
+    [Header("Ptayer Interaction")]
+    [SerializeField] private float _sightDistance;
+    [SerializeField] private float _attackDistance;
     public float PatrolSpeed => _patrolSpeed;
-    public int MovX => _movX;
+    public float SightDistance => _sightDistance;
+    public float AttackDistance => _attackDistance;
 
     public Transform player;
     private EnemyStateManager _stateManager;
 
     float isWalking;
-    public bool isAttacking = false;
     public int damage = 1;
 
     public virtual void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
-        Ch = transform.Find("Character");
     }
 
     public void Start()
     {
-        EnemyState _initialState = new EnemyStatePatrol(this, _stateManager);
         _stateManager = new EnemyStateManager();
+        EnemyState _initialState = new EnemyStatePatrol(this, _stateManager);
         _stateManager.Initialize(_initialState);
     }
 
-    public void Attack()
-    {
-        if (!isAttacking)
-        {
-            isAttacking = true;
-            Anim.SetTrigger("attack");
-            Rb.velocity = Vector2.zero;
-        }
-    }
+    //public void Attack()
+    //{
+    //    if (!isAttacking)
+    //    {
+    //        isAttacking = true;
+    //        Anim.SetTrigger("attack");
+    //        Rb.velocity = Vector2.zero;
+    //    }
+    //}
 
-    private void DetectWalking()
-    {
-        isWalking = Rb.velocity.x != 0 ? 1 : 0;
-        Anim.SetFloat("xVelocity", isWalking);
-        _movX = (int) Mathf.Sign(Rb.velocity.x);
-    }
     private void Update()
     {
         _stateManager.UpdateState();
-        DetectWalking();
+        //Debug.Log(_stateManager.CurrentState.ToString());
     }
     void FixedUpdate()
     {}

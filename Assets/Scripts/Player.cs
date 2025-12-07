@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jumpForce = 12f;
     [SerializeField] private int _maxFallVelocity = 2;
     [SerializeField] private float _jumpHangTimeThreshold = 0.5f;
+    [SerializeField] private float _knockbackForce;
     public bool isJumping;
     public bool isFalling;
     private bool isSprinting;
@@ -24,13 +25,13 @@ public class Player : MonoBehaviour
     private float _defaultGravity;
     public bool IsGrounded => _isGrounded;
     public float DefaultGravity => _defaultGravity;
+    public float KnockbackForce => _knockbackForce;
     public float JumpForce => _jumpForce;
     public int MaxFallVelocity => _maxFallVelocity;
     public float JumpHangTimeThreshold => _jumpHangTimeThreshold;
 
-    private float isWalking;
+    private float _isWalking;
     private bool isAttacked;
-    [SerializeField] private float knockbackForce;
     public int potions = 0;
     GameObject groundCheckLeft, groundCheckRight;
     [SerializeField] private LayerMask groundLayer;
@@ -38,7 +39,7 @@ public class Player : MonoBehaviour
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
-    private HpPlayer hpManager;
+    public HpPlayer hpManager;
 
     private PlayerState _currentState;
 
@@ -68,7 +69,6 @@ public class Player : MonoBehaviour
             _currentState.EnterState();
         }
     }
-
     private void DetectXInput()
     {
         // movimiento horizontal
@@ -108,8 +108,8 @@ public class Player : MonoBehaviour
 
     private void DetectXMovement()
     {
-        isWalking = rb.velocity.x != 0 ? 1 : 0;
-        animator.SetFloat("xVelocity", isWalking);
+        float _xVelocity = Mathf.Abs(rb.velocity.x);
+        animator.SetFloat("xVelocity", _xVelocity);
     }
 
     public void OnAttacked(int dmg, Vector2 enemyPos)
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
         hpManager.TakeDamage(dmg);
         print("enemypos " + enemyPos);
 
-        animator.SetTrigger("Hurted");
+        animator.SetTrigger("hurted");
         //Vector2 knockbackDir = (new Vector2(transform.position.x, transform.position.y) - enemyPos).normalized;
         //print("knockback vector: " + knockbackDir * 30f);
 
@@ -128,7 +128,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         _currentState.HandleInput();
-        Debug.Log(_currentState.ToString());
 
         // Movimiento
         DetectXMovement();

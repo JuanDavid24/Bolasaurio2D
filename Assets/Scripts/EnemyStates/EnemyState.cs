@@ -7,16 +7,25 @@ namespace Assets.Scripts.EnemyStates
     {
         protected EnemyStateManager _stateManager;
         protected EnemyController _enemy;
+        protected Transform _player;
         public EnemyState(EnemyController enemy, EnemyStateManager stateManager)
         {
             _enemy = enemy;
             _stateManager = stateManager;
         }
-        public virtual void EnterState() { }
+        public virtual void EnterState()
+        {
+            _player = _enemy.player;
+        }
         public abstract void HandleState();
         public virtual void PhysicsUpdate() { }
         public virtual void ExitState() { }
         public virtual void OnAttacked() { }
         public virtual void OnCollisionWithPlayer() { }
+        protected virtual void AnimateWalking()
+        {
+            float isWalking = _enemy.Rb.velocity.x != 0 ? 1 : 0;
+            _enemy.Anim.SetFloat("xVelocity", isWalking);
+        }
     }
 }
