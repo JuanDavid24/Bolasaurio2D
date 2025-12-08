@@ -5,12 +5,12 @@ using UnityEngine;
 public class UseItems : MonoBehaviour
 {
     private ItemManager im;
-    private HpPlayer hpm;
+    private HpManagerPlayer hpm;
     [SerializeField] private int hp;
     void Start()
     {
         im = GetComponent<ItemManager>();
-        hpm = GetComponent<HpPlayer>();
+        hpm = GetComponent<HpManagerPlayer>();
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class UseItems : MonoBehaviour
                     {
                         hpm.Heal(invItem.load);
                         im.inventory[item.Key] -= 1;
-                        print("Usaste PotionHP. Vida: " + hpm.hp);
+                        print("Usaste PotionHP. Vida: " + hpm.Hp);
                         im.PrintInventory();
                         break;
                     }   

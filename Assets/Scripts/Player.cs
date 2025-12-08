@@ -39,14 +39,14 @@ public class Player : MonoBehaviour
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
-    public HpPlayer hpManager;
+    public HpManagerPlayer hpManager;
 
     private PlayerState _currentState;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        hpManager = GetComponent<HpPlayer>();
+        hpManager = GetComponent<HpManagerPlayer>();
         animator = GetComponent<Animator>();
 
         _currentState = new PlayerStateGrounded(this);

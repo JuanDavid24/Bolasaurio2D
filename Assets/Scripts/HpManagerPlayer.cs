@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HpPlayer : Hp
+public class HpManagerPlayer : HpManager
 {
     [SerializeField] GameObject hpBar;
     private HpUI hpUI;
@@ -9,18 +9,18 @@ public class HpPlayer : Hp
         base.Awake();
         hpUI = hpBar.GetComponent<HpUI>();
         hpUI.SetMaxHP(maxHP);
-        hpUI.UpdateHP(hp);
+        hpUI.UpdateHP(Hp);
     }
 
     public override void TakeDamage(int dmg)
     {
         base.TakeDamage(dmg);
-        hpUI.UpdateHP(hp);
+        hpUI.UpdateHP(Hp);
     }
 
     public void Heal(int amount)
     {
         ChangeHp(amount);
-        hpUI.UpdateHP(hp);
+        hpUI.UpdateHP(Hp);
     }
 }
