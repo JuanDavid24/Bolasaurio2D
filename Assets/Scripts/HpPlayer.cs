@@ -17,4 +17,10 @@ public class HpPlayer : Hp
         base.TakeDamage(dmg);
         hpUI.UpdateHP(hp);
     }
+
+    public void Heal(int amount)
+    {
+        ChangeHp(amount);
+        hpUI.UpdateHP(hp);
+    }
 }
