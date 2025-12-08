@@ -32,7 +32,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Se acabo el tiempo");
+                //Debug.Log("Se acabo el tiempo");
                 timeLeft = 0;
                 timerOn = false;
             }

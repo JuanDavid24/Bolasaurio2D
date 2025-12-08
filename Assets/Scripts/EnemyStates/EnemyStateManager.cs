@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.EnemyStates
 {
@@ -20,6 +20,7 @@ namespace Assets.Scripts.EnemyStates
                 CurrentState = newState;
                 CurrentState.EnterState();
             }
+            //Debug.Log($"Cambio de state: ${CurrentState}");
         }
 
         public void UpdateState()

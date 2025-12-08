@@ -45,11 +45,11 @@ PrefabInstance:
     - target: {fileID: 85915501457444260, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
       propertyPath: pointA
       value: 
-      objectReference: {fileID: 8312049518182822562}
+      objectReference: {fileID: 4901251981218446901}
     - target: {fileID: 85915501457444260, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
       propertyPath: pointB
       value: 
-      objectReference: {fileID: 4901251981218446901}
+      objectReference: {fileID: 8312049518182822562}
     - target: {fileID: 4380097298539421602, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
       propertyPath: m_Name
       value: Character

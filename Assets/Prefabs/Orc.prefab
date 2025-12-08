@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5708720715982512251}
   - component: {fileID: 6238507301985022317}
   - component: {fileID: 85915501457444260}
-  - component: {fileID: 4854039576412748311}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Enemy
@@ -197,26 +196,7 @@ MonoBehaviour:
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   _patrolSpeed: 3.5
-  _sightDistance: 0
-  _attackDistance: 0
-  player: {fileID: 0}
-  damage: 1
---- !u!114 &4854039576412748311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4380097298539421602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ff04e249f3e75240abdf367f218fdd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointA: {fileID: 0}
-  pointB: {fileID: 0}
-  _patrolSpeed: 3.5
-  _sightDistance: 0
-  _attackDistance: 0
+  _sightDistance: 6
+  _attackDistance: 3
   player: {fileID: 0}
   damage: 1
