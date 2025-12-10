@@ -114,11 +114,7 @@ public class Player : MonoBehaviour
 
     public void OnAttacked(int dmg, Vector2 enemyPos)
     {
-        isAttacked = true;
-        hpManager.TakeDamage(dmg);
-        print("enemypos " + enemyPos);
-
-        animator.SetTrigger("hurted");
+        _currentState.OnAttacked(dmg, enemyPos);
         //Vector2 knockbackDir = (new Vector2(transform.position.x, transform.position.y) - enemyPos).normalized;
         //print("knockback vector: " + knockbackDir * 30f);
 

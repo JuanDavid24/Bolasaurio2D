@@ -24,7 +24,7 @@ namespace Assets.Scripts
             _player.hpManager.TakeDamage(dmg);
             //print("enemypos " + enemyPos);
 
-            _player.animator.SetTrigger("hurted");
+            _player.animator.SetTrigger("hurt");
             Vector2 knockbackDir = (new Vector2(_player.transform.position.x, _player.transform.position.y) - enemyPos).normalized;
             //print("knockback vector: " + knockbackDir * 30f);
             _player.rb.velocity = Vector2.zero;

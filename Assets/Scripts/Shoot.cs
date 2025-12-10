@@ -1,17 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
     [SerializeField] private GameObject obj;
+    [SerializeField] private float _cooldown;
+    [SerializeField] private Timer _cooldownTimer;
 
-    // Update is called once per frame
+    void Start()
+    {
+        _cooldownTimer.Restart(0);
+    }
+    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.RightShift) && !_cooldownTimer.timerOn)
         {
             ShootBullet();
+            _cooldownTimer.Restart(_cooldown);
         }
     }
     private void ShootBullet()

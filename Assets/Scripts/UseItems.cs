@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class UseItems : MonoBehaviour
 {
     private ItemManager im;
     private HpManagerPlayer hpm;
     [SerializeField] private int hp;
+    [SerializeField] private CountPanelUI potionHPUI;
     void Start()
     {
         im = GetComponent<ItemManager>();
@@ -34,6 +36,10 @@ public class UseItems : MonoBehaviour
                         im.inventory[item.Key] -= 1;
                         print("Usaste PotionHP. Vida: " + hpm.Hp);
                         im.PrintInventory();
+                        
+                        // Update UI
+                        potionHPUI.AddQuantity(invItem.itemID, -1);
+                        
                         break;
                     }   
                 }

@@ -6,6 +6,7 @@ public class ItemManager : MonoBehaviour
 {
     public List<GameObject> gameItems;
     public Dictionary<GameObject, int> inventory = new Dictionary<GameObject, int>();
+    [SerializeField] private CountPanelUI potionHPUI;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,9 @@ public class ItemManager : MonoBehaviour
                 break;
             }
         }
+
+        if (itemID == "PotionHP")
+            potionHPUI.AddQuantity(itemID, count);
     }
 
     public void PrintInventory()

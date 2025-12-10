@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private int ta;
     public float timeLeft;
     public bool timerOn;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        timerOn = true;
-        ta = (int)timeLeft + 1;
+        //ta = (int)timeLeft + 1;
+        timerOn = timeLeft > 0;
     }
 
     public void Restart(float newTime)
