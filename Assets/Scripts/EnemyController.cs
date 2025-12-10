@@ -59,4 +59,9 @@ public class EnemyController : MonoBehaviour
     {
         _stateManager.CurrentState.OnAnimationEnd();
     }
+
+    public void OnAttacked(int dmg, Vector2 dmgDealerPos)
+    {
+        _stateManager.CurrentState.OnAttacked(dmg, dmgDealerPos);
+    }
 }

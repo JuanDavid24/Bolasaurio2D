@@ -20,7 +20,12 @@ namespace Assets.Scripts.EnemyStates
         public virtual void HandleState() { }
         public virtual void PhysicsUpdate() { }
         public virtual void ExitState() { }
-        public virtual void OnAttacked() { }
+        public virtual void OnAttacked(int dmg, Vector2 dmgDealerPos) 
+        {
+            HpManager hpm = _enemy.gameObject.GetComponent<HpManager>();
+            hpm.TakeDamage(dmg);
+            _enemy.Anim.SetTrigger("hurt");
+        }
         public virtual void OnCollisionWithPlayer() { }
         public virtual void OnAnimationEnd() { }
         protected virtual void AnimateWalking()
