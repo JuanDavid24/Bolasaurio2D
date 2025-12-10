@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
             _currentState.ExitState();
             _currentState = newState;
             _currentState.EnterState();
+            print($"nuevo estado {_currentState}");
         }
     }
     private void DetectXInput()
@@ -135,5 +136,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         CheckGrounded();     
+        _currentState.PhysicsUpdate();
     }
 }

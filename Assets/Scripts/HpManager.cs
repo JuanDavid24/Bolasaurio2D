@@ -41,7 +41,7 @@ public class HpManager : MonoBehaviour
         isAlive = Hp > 0;
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Debug.Log(gameObject.name + " se murió XD");
         //gameObject.GetComponent<Collider2D>().enabled = false;

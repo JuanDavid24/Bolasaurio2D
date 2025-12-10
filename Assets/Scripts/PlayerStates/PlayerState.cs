@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Assets.Scripts
 {
@@ -19,16 +18,17 @@ namespace Assets.Scripts
         public virtual void PhysicsUpdate() { }
         public virtual void EnterState() { }
         public virtual void ExitState() { }
+
         public virtual void OnAttacked(int dmg, Vector2 enemyPos)
         {
             _player.hpManager.TakeDamage(dmg);
-            //print("enemypos " + enemyPos);
-
             _player.animator.SetTrigger("hurt");
-            Vector2 knockbackDir = (new Vector2(_player.transform.position.x, _player.transform.position.y) - enemyPos).normalized;
-            //print("knockback vector: " + knockbackDir * 30f);
             _player.rb.velocity = Vector2.zero;
-            _player.rb.AddForce(Vector2.up * _player.KnockbackForce, ForceMode2D.Impulse);
+            Vector2 dir = ((Vector2)_player.transform.position - enemyPos).normalized;
+            //print("knockback vector: " + knockbackDir * 30f);
+            _player.rb.velocity = dir * _player.KnockbackForce;
+            _player.TransitionToState(new PlayerStateKnockback(_player));
+            //_player.rb.AddForce(Vector2.up * _player.KnockbackForce, ForceMode2D.Impulse);
         }
     }
 }

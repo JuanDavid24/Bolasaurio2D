@@ -23,4 +23,6 @@ public class HpManagerPlayer : HpManager
         ChangeHp(amount);
         hpUI.UpdateHP(Hp);
     }
+
+    public override void Die() => DestroyAfterDie();
 }
