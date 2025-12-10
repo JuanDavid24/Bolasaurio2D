@@ -3,7 +3,7 @@ using UnityEngine;
 public class HpManager : MonoBehaviour
 {
     [SerializeField] protected int maxHP = 6;
-    bool isAlive;
+    public bool isAlive;
     private int _hp;
     public int Hp
     {
@@ -41,19 +41,18 @@ public class HpManager : MonoBehaviour
         isAlive = Hp > 0;
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log(gameObject.name + " se murió XD");
-        Destroy(gameObject);
+        //gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<Animator>().SetTrigger("die");
     }
 
-    // Update is called once per frame
+    public void DestroyAfterDie() => Destroy(gameObject);
+
     void Update()
     {
         if (!isAlive)
-        {
-            // muerte
             Die();
-        }
     }
 }

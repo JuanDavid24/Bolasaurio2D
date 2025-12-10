@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 6
+  isAlive: 0
   hpBar: {fileID: 391330019}
 --- !u!1 &161245726
 GameObject:
@@ -15893,11 +15894,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 774529526705323299, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.16
+      value: 15.269
       objectReference: {fileID: 0}
     - target: {fileID: 774529526705323299, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.43
+      value: -2.441
       objectReference: {fileID: 0}
     - target: {fileID: 774529526705323299, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15982,6 +15983,10 @@ PrefabInstance:
     - target: {fileID: 5732256940085134572, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377639821404059459, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7672966347409137272, guid: 770dfdb6aa3f5fc4c8d4898a608d58c1, type: 3}
       propertyPath: m_Enabled

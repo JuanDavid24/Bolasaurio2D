@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using Assets.Scripts.EnemyStates;
+using System;
 using System.Data;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class EnemyController : MonoBehaviour
     public Rigidbody2D Rb { get; private set; }
     public Animator Anim { get; private set; }
     public Timer TimerCooldown { get; private set; }
+    public HpManager Hp { get; private set; }
 
     public Transform player;
     public int damage = 1;
@@ -29,7 +31,6 @@ public class EnemyController : MonoBehaviour
     public float AttackAnimationVelocity => _attackAnimationVelocity;
 
     private EnemyStateManager _stateManager;
-
     float isWalking;
 
     public virtual void Awake()
@@ -37,6 +38,7 @@ public class EnemyController : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
         TimerCooldown = GetComponent<Timer>();
+        Hp = GetComponent<HpManager>();
     }
 
     public void Start()
@@ -48,12 +50,14 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        _stateManager.UpdateState();
+        if (Hp.isAlive)
+            _stateManager.UpdateState();
         //Debug.Log(_stateManager.CurrentState.ToString());
     }
     void FixedUpdate()
     {
-        _stateManager.FixedUpdateState();
+        if (Hp.isAlive)
+            _stateManager.FixedUpdateState();
     }
     public void OnAnimationEnd()
     {
