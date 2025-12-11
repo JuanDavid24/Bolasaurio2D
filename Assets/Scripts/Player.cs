@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     public int potions = 0;
     GameObject groundCheckLeft, groundCheckRight;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float _groundCheckDistance;
 
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
@@ -102,8 +103,8 @@ public class Player : MonoBehaviour
 
     private void CheckGrounded()
     { 
-        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.transform.position, Vector2.down, 0.1f, groundLayer);
-        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.transform.position, Vector2.down, 0.1f, groundLayer);
+        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.transform.position, Vector2.down, _groundCheckDistance, groundLayer);
+        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.transform.position, Vector2.down, _groundCheckDistance, groundLayer);
         _isGrounded = isGroundedLeft || isGroundedRight;
     }
 
