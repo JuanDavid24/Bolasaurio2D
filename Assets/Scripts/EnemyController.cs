@@ -7,12 +7,17 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D Rb { get; private set; }
+    public Collider2D Col { get; private set; }
     public Animator Anim { get; private set; }
     public Timer TimerCooldown { get; private set; }
     public HpManager Hp { get; private set; }
 
     public Transform player;
     public int damage = 1;
+    [Header("Physics")]
+    public PhysicsMaterial2D WalkMaterial;
+    public PhysicsMaterial2D StandMaterial;
+
     [Header("Patrol")]
     public Transform pointA;
     public Transform pointB;
@@ -36,6 +41,7 @@ public class EnemyController : MonoBehaviour
     public virtual void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
+        Col = GetComponent<Collider2D>();
         Anim = GetComponent<Animator>();
         TimerCooldown = GetComponent<Timer>();
         Hp = GetComponent<HpManager>();

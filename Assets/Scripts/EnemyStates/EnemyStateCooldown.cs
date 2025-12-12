@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.EnemyStates
@@ -11,6 +10,7 @@ namespace Assets.Scripts.EnemyStates
         public override void EnterState()
         {
             base.EnterState();
+            _enemy.Col.sharedMaterial = _enemy.StandMaterial;
             _enemy.Rb.velocity = new Vector2(0, _enemy.Rb.velocity.y);
             _timer = _enemy.TimerCooldown;
             _timer.timeLeft = _enemy.AttackCooldown;
@@ -23,6 +23,11 @@ namespace Assets.Scripts.EnemyStates
             {
                 _stateManager.TransitionToState(new EnemyStatePatrol(_enemy, _stateManager));
             }
+        }
+
+        public override void ExitState()
+        {
+            _enemy.Col.sharedMaterial = _enemy.WalkMaterial;
         }
     }
 }

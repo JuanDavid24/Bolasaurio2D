@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4189048106374519602}
   - component: {fileID: 5514857727626293933}
   - component: {fileID: 5563887898853390055}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orc
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -198,6 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   damage: 1
+  WalkMaterial: {fileID: 6200000, guid: 624be7d0163f52c49acece4d16463620, type: 2}
+  StandMaterial: {fileID: 6200000, guid: bd1149f16a802e34fb1e6216cb0b471f, type: 2}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   _patrolSpeed: 3.5
@@ -232,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 6
+  isAlive: 0
 --- !u!114 &5563887898853390055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,3 +248,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 6
+  isAlive: 0

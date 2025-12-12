@@ -24,6 +24,5 @@ namespace Assets.Scripts.EnemyStates
         {
             _stateManager.TransitionToState(new EnemyStateCooldown(_enemy, _stateManager));
         }
-
     }
 }
