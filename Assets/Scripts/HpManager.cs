@@ -19,8 +19,6 @@ public class HpManager : MonoBehaviour
     {
         if(Hp == 0) 
             ChangeHp(maxHP);
-
-        print("Vida actual: " + Hp);
         isAlive = true;
     }
 
