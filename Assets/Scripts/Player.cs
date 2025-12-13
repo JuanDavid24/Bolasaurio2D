@@ -1,6 +1,4 @@
 using Assets.Scripts;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -30,8 +28,6 @@ public class Player : MonoBehaviour
     public int MaxFallVelocity => _maxFallVelocity;
     public float JumpHangTimeThreshold => _jumpHangTimeThreshold;
 
-    private float _isWalking;
-    private bool isAttacked;
     public int potions = 0;
     GameObject groundCheckLeft, groundCheckRight;
     [SerializeField] private LayerMask groundLayer;
@@ -68,7 +64,7 @@ public class Player : MonoBehaviour
             _currentState.ExitState();
             _currentState = newState;
             _currentState.EnterState();
-            print($"nuevo estado {_currentState}");
+            //print($"nuevo estado {_currentState}");
         }
     }
     private void DetectXInput()
@@ -117,10 +113,6 @@ public class Player : MonoBehaviour
     public void OnAttacked(int dmg, Vector2 enemyPos)
     {
         _currentState.OnAttacked(dmg, enemyPos);
-        //Vector2 knockbackDir = (new Vector2(transform.position.x, transform.position.y) - enemyPos).normalized;
-        //print("knockback vector: " + knockbackDir * 30f);
-
-        //rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
     }
 
     void Update()
