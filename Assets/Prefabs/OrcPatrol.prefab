@@ -100,10 +100,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4854039576412748311, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
+    - {fileID: 5563887898853390055, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
+    - {fileID: 85915501457444260, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4380097298539421602, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 7502370249843809521}
   m_SourcePrefab: {fileID: 100100000, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
+--- !u!1 &2869039219710286860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4380097298539421602, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
+  m_PrefabInstance: {fileID: 1952843364322362286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7502370249843809521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869039219710286860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90875dfb1b536264ba5c29aa92df1c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  damage: 1
+  _attackCooldown: 2
+  pointA: {fileID: 4901251981218446901}
+  pointB: {fileID: 8312049518182822562}
+  _patrolSpeed: 2
+  _chaseSpeed: 4
+  _sightDistance: 5
+  _attackDistance: 3
+  _attackAnimationVelocity: 0
+  WalkMaterial: {fileID: 6200000, guid: 624be7d0163f52c49acece4d16463620, type: 2}
+  StandMaterial: {fileID: 6200000, guid: bd1149f16a802e34fb1e6216cb0b471f, type: 2}
 --- !u!4 &8920558682548731126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6977716752486383448, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}

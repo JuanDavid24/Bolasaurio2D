@@ -10,8 +10,7 @@ namespace Assets.Scripts.EnemyStates
         public override void EnterState()
         {
             base.EnterState();
-            _enemy.Col.sharedMaterial = _enemy.StandMaterial;
-            _enemy.Rb.velocity = new Vector2(0, _enemy.Rb.velocity.y);
+            _enemy.OnCooldown();
             _timer = _enemy.TimerCooldown;
             _timer.timeLeft = _enemy.AttackCooldown;
             _timer.timerOn = true;
@@ -21,13 +20,13 @@ namespace Assets.Scripts.EnemyStates
         {
             if (!_timer.timerOn)
             {
-                _stateManager.TransitionToState(new EnemyStatePatrol(_enemy, _stateManager));
+                _stateManager.TransitionToState(_enemy.GetDefaultState());
             }
         }
 
         public override void ExitState()
         {
-            _enemy.Col.sharedMaterial = _enemy.WalkMaterial;
+            _enemy.OnCooldownFinish();
         }
     }
 }

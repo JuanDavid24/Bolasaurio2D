@@ -6,47 +6,40 @@ namespace Assets.Scripts.EnemyStates
 {
     public class EnemyStateChase : EnemyState
     {
+        private PatrolEnemyController _patrolEnemy;
         private float playerDistance;
 
-        public EnemyStateChase(EnemyController enemy, EnemyStateManager stateManager) : base(enemy, stateManager) { }
+        public EnemyStateChase(PatrolEnemyController enemy, EnemyStateManager stateManager) : base(enemy, stateManager) 
+        {
+            _patrolEnemy = enemy;
+        }
 
         public override void HandleState()
         {
-            FlipSpriteToPlayer();
-            DetectPlayer();
-            AnimateWalking();
+            _enemy.FlipSpriteToPlayer();
+            CheckPlayerDistance();
+            _enemy.AnimateMovement();
         }
 
-        private void DetectPlayer()
+        private void CheckPlayerDistance()
         {
-            playerDistance = Vector3.Distance(_player.position, _enemy.transform.position);
-
-            if (playerDistance < _enemy.SightDistance)
+            if (_patrolEnemy.IsPlayerOnSight)
             {
-
-                if (playerDistance < _enemy.AttackDistance)
+                if (_patrolEnemy.IsPlayerWithinAttackRange)
                 {
                     // atacar
                     _stateManager.TransitionToState(new EnemyStateAttack(_enemy, _stateManager));
                     return;
                 }
-                
-                MoveTowardsX(_player.position);
             }
             else
             {
-                _stateManager.TransitionToState(new EnemyStatePatrol(_enemy, _stateManager));
+                _stateManager.TransitionToState(new EnemyStatePatrol(_patrolEnemy, _stateManager));
             }
         }
-        //public override void PhysicsUpdate()
-        //{
-
-        //}
-
-        private void MoveTowardsX(Vector2 target)
+        public override void PhysicsUpdate()
         {
-            float direction = Mathf.Sign(target.x - _enemy.transform.position.x);
-            _enemy.Rb.velocity = new Vector2(direction * _enemy.PatrolSpeed, _enemy.Rb.velocity.y);
+            _patrolEnemy.MoveTowardsX(_player.position, _patrolEnemy.ChaseSpeed); // chase player
         }
     }
 }

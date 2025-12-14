@@ -8,43 +8,37 @@ namespace Assets.Scripts
     {
         private Transform _pointA, _pointB, _currentTarget;
         private float playerDistance;
+        private PatrolEnemyController _patrolEnemy;
 
-        public EnemyStatePatrol(EnemyController enemy, EnemyStateManager stateManager) : base(enemy, stateManager) { }
+        public EnemyStatePatrol(PatrolEnemyController enemy, EnemyStateManager stateManager) : base(enemy, stateManager) 
+        {
+            _patrolEnemy = enemy;
+        }
 
         public override void EnterState() 
         {
             base.EnterState();
-            _pointA = _enemy.pointA;
-            _pointB = _enemy.pointB;
+            _pointA = _patrolEnemy.pointA;
+            _pointB = _patrolEnemy.pointB;
             _currentTarget = _pointA;
         }
         public override void HandleState()
         {
-            DetectPlayer();
-            FlipSpriteAuto();
+            //DetectPlayer();
+            if (_patrolEnemy.IsPlayerOnSight)
+            {
+                _stateManager.TransitionToState(new EnemyStateChase(_patrolEnemy, _stateManager));
+            }
+
+            _enemy.FlipSpriteAuto();
 
             float distanceToTarget = Vector2.Distance(_currentTarget.position, _enemy.transform.position);
             if (distanceToTarget < 0.5f)
             {
                 _currentTarget = ToggleTarget;
             }
-            MoveTowardsX(_currentTarget.position);
-            AnimateWalking();
-        }
-
-        private void DetectPlayer()
-        {
-            playerDistance = Vector3.Distance(_player.position, _enemy.transform.position);
-
-            if (playerDistance < _enemy.SightDistance)
-            {
-                _stateManager.TransitionToState(new EnemyStateChase(_enemy, _stateManager));
-            }
-        }
-        private void MoveTowardsX(Vector2 target)
-        {
-            float direction = Mathf.Sign(target.x - _enemy.transform.position.x);
-            _enemy.Rb.velocity = new Vector2(direction * _enemy.PatrolSpeed, _enemy.Rb.velocity.y);
+            _patrolEnemy.MoveTowardsX(_currentTarget.position, _patrolEnemy.PatrolSpeed);
+            _enemy.AnimateMovement();
         }
 
         private Transform ToggleTarget => _currentTarget == _pointA ? _pointB : _pointA;
