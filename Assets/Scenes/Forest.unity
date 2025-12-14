@@ -217,6 +217,7 @@ Transform:
   m_Children:
   - {fileID: 777750549}
   - {fileID: 1973790876}
+  - {fileID: 630793874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &78093885
@@ -244,7 +245,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   _groundCheckDistance: 1
-  hpManager: {fileID: 0}
+  _icon: {fileID: 630793873}
+  hpManager: {fileID: 78093897}
 --- !u!50 &78093886
 Rigidbody2D:
   serializedVersion: 4
@@ -1334,7 +1336,7 @@ GameObject:
   - component: {fileID: 630793876}
   - component: {fileID: 630793875}
   m_Layer: 0
-  m_Name: Icon
+  m_Name: ActivateDialogIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1348,12 +1350,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630793873}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.02, y: 1.2, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1044773640}
+  m_Father: {fileID: 78093884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!111 &630793875
 Animation:
@@ -1567,7 +1569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hintTextbox: {fileID: 0}
   IsPanelActive: 0
-  _hintDelay: 4
 --- !u!1 &857271121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,7 +3871,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1044773640}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 199634319608609134, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: m_Size.x
@@ -3918,11 +3919,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2123385668631139939, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.93
       objectReference: {fileID: 0}
     - target: {fileID: 2123385668631139939, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.37
       objectReference: {fileID: 0}
     - target: {fileID: 2123385668631139939, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4150,6 +4151,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949099973}
   m_CullTransparentMesh: 1
+--- !u!1001 &950612133
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05794893
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401069074744107783, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_Name
+      value: HintInteract (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: HintPanel
+      value: 
+      objectReference: {fileID: 849287867}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _justPlayOnce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _sentenceDelay
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _hintSentences.Array.data[0]
+      value: "Cuando veas un simbolo de interrogaci\xF3n (?) sobre la cabeza de Bolasaurio,
+        pulsa la letra E para interactuar."
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
 --- !u!1 &964310926
 GameObject:
   m_ObjectHideFlags: 0
@@ -9679,39 +9754,6 @@ RectTransform:
   m_AnchoredPosition: {x: 91.35651, y: 0.08608911}
   m_SizeDelta: {x: 60, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1044773639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1044773640}
-  m_Layer: 0
-  m_Name: DialogWithIcon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1044773640
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044773639}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.93, y: -1.37, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1118068162}
-  - {fileID: 630793874}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1068717858
 GameObject:
   m_ObjectHideFlags: 0
@@ -10713,11 +10755,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1118068162 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2123385668631139939, guid: edc63f058959dce4886c4da510aa190e, type: 3}
-  m_PrefabInstance: {fileID: 900384820}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1141270128
 GameObject:
   m_ObjectHideFlags: 0
@@ -10916,6 +10953,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1685340598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1425515590
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05794893
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401069074744107783, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_Name
+      value: HintJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: HintPanel
+      value: 
+      objectReference: {fileID: 849287867}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _playOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _justPlayOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _sentenceDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _hintSentences.Array.data[0]
+      value: Salta con la barra espaciadora
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
 --- !u!1001 &1587614436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10973,6 +11087,80 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c124b9d93b8c76e4a8ec2b712b8ebecb, type: 3}
+--- !u!1001 &1611922026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05794893
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401069074744107783, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: m_Name
+      value: HintInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: HintPanel
+      value: 
+      objectReference: {fileID: 849287867}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _justPlayOnce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _sentenceDelay
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _hintSentences.Array.data[0]
+      value: "Cuando veas un simbolo de interrogaci\xF3n (?) sobre la cabeza de Bolasaurio,
+        pulsa la letra E para interactuar con el entorno."
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
 --- !u!1 &1639823226
 GameObject:
   m_ObjectHideFlags: 3
@@ -25942,11 +26130,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97.28
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.46
+      value: -1.32
       objectReference: {fileID: 0}
     - target: {fileID: 3768708577011103071, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25988,6 +26176,22 @@ PrefabInstance:
       propertyPath: HintPanel
       value: 
       objectReference: {fileID: 849287867}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _playOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _justPlayOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _sentenceDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305304105341895456, guid: 7033c1ada6c74fb46b31815c48aa043a, type: 3}
+      propertyPath: _hintSentences.Array.data[0]
+      value: Usa las teclas WSAD para mover al personaje
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26265,6 +26469,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7357288455460736434, guid: edc63f058959dce4886c4da510aa190e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357288455460736434, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: DialogPanel
       value: 
       objectReference: {fileID: 1930262005}
@@ -26274,15 +26482,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357288455460736434, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: _dialog.Array.data[0]
-      value: "Esta pared parece fr\xE1gil y se oye hueco desde el interior."
+      value: Hola Bolasaurio. Me alegra volver a verte! Yo me encuentro bien. Por
+        otro lado, la nave...
       objectReference: {fileID: 0}
     - target: {fileID: 7357288455460736434, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: _dialog.Array.data[1]
-      value: "Quiz\xE1s con la herramienta adecuada podr\xEDa romperse..."
+      value: "Como ver\xE1s, el choque fue duro. Los da\xF1os son m\xFAltiples. No
+        hay forma de que pueda volver a despegar as\xED!"
       objectReference: {fileID: 0}
     - target: {fileID: 7421478619355098020, guid: edc63f058959dce4886c4da510aa190e, type: 3}
       propertyPath: m_Name
       value: DialogTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421478619355098020, guid: edc63f058959dce4886c4da510aa190e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26357,6 +26571,7 @@ SceneRoots:
   - {fileID: 1777276394}
   - {fileID: 1685340598}
   - {fileID: 214506612376066575}
+  - {fileID: 1425515590}
   - {fileID: 542894186}
   - {fileID: 174191284}
   - {fileID: 1141270130}
@@ -26369,4 +26584,6 @@ SceneRoots:
   - {fileID: 1745978012}
   - {fileID: 1045336497012334330}
   - {fileID: 2091247331}
-  - {fileID: 1044773640}
+  - {fileID: 900384820}
+  - {fileID: 1611922026}
+  - {fileID: 950612133}
