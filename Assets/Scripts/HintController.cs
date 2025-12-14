@@ -9,7 +9,6 @@ public class HintController : MonoBehaviour
     public Animator animator { get; private set; }
     private Queue<string> _hintSentences;
     public bool IsPanelActive = false;
-    [SerializeField] private float _hintDelay = 2f;
     private Coroutine _currentCoroutine;
 
     private void Awake()
@@ -22,7 +21,7 @@ public class HintController : MonoBehaviour
         hintTextbox = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void InitializeHintPanel(List<string> hints)
+    public void InitializeHintPanel(List<string> hints, float _hintDelay)
     {
         if (hints.Count < 1)
         {
@@ -44,10 +43,10 @@ public class HintController : MonoBehaviour
         animator.SetTrigger("openHint");
         IsPanelActive = true;
 
-        _currentCoroutine = StartCoroutine(ShowHint());
+        _currentCoroutine = StartCoroutine(ShowHint(_hintDelay));
     }
 
-    IEnumerator ShowHint()
+    IEnumerator ShowHint(float _hintDelay)
     {
         while(_hintSentences.Count > 0)
         {

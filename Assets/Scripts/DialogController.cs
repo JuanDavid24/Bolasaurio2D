@@ -21,6 +21,9 @@ public class DialogController : MonoBehaviour
 
     public void InitializeDialogPanel(List<string> dialog)
     {
+        if (IsPanelActive)
+            return;
+
         _dialogSentences.Clear();
         if (dialog.Count < 1)
         {

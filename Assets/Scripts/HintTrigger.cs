@@ -7,8 +7,9 @@ public class HintTrigger : MonoBehaviour
     public HintController HintPanel;
     [SerializeField] private List<string> _hintSentences;
     private bool _isPlayerInRange = false;
-    private bool _isHintNew = true;
-
+    [SerializeField] private float _sentenceDelay = 2f;
+    [SerializeField] private bool _playOnce = false;
+    private bool _justPlayed = false;
     void Start()
     {
         Col = GetComponent<Collider2D>();
@@ -19,19 +20,20 @@ public class HintTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-            _isPlayerInRange = false;
+        _isPlayerInRange = !collision.CompareTag("Player");
+        _justPlayed = false;
     }
 
     void Update()
     {
-        if(_isHintNew)
+        if (!_isPlayerInRange) 
+            return;
+        if (!HintPanel.IsPanelActive && !_justPlayed)
         {
-            if (!HintPanel.IsPanelActive && _isPlayerInRange)
-            {
-                HintPanel.InitializeHintPanel(_hintSentences);
-                _isHintNew = false;
-            }
+            HintPanel.InitializeHintPanel(_hintSentences, _sentenceDelay);
+            _justPlayed = true;
+            if (_playOnce)
+                gameObject.SetActive(false);
         }
     }
 }

@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float _groundCheckDistance;
 
+    [SerializeField] private GameObject _icon;
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
@@ -57,6 +58,10 @@ public class Player : MonoBehaviour
         _defaultGravity = rb.gravityScale;
     }
 
+    void Start()
+    {
+        _icon.SetActive(false);
+    }
     public void TransitionToState(PlayerState newState)
     {
         if (_currentState != newState)
@@ -93,9 +98,12 @@ public class Player : MonoBehaviour
     {
         if (_movX != 0) 
         {
-            transform.localScale = new Vector3(_movX, 1, 1); 
+            transform.localScale = new Vector3(_movX, 1, 1);
+            AdjustIconFlip();
         }
     }
+
+    private void AdjustIconFlip() => _icon.transform.localScale = new Vector3(Mathf.Abs(_icon.transform.localScale.x) * MovX, _icon.transform.localScale.y, 1);
 
     private void CheckGrounded()
     { 
@@ -113,6 +121,10 @@ public class Player : MonoBehaviour
     public void OnAttacked(int dmg, Vector2 enemyPos)
     {
         _currentState.OnAttacked(dmg, enemyPos);
+    }
+    public void SetIconVisibility(bool isVisible) 
+    {
+        _icon.SetActive(isVisible);
     }
 
     void Update()

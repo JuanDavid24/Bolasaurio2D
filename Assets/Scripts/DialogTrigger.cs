@@ -7,30 +7,37 @@ public class DialogTrigger : MonoBehaviour
     public DialogController DialogPanel;
     [SerializeField] private List<string> _dialog;
     private bool _isPlayerInRange = false;
-
+    [SerializeField] private Player _player;
     void Start()
     {
         Col = GetComponent<Collider2D>();
+        if (_player == null)
+            _player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
+        {
             _isPlayerInRange = true;
+            _player.SetIconVisibility(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
+        {
             _isPlayerInRange = false;
+            _player.SetIconVisibility(false);
+        }
     }
 
     void Update()
     {
-        if (!DialogPanel.IsPanelActive)
+        if (_isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (_isPlayerInRange && Input.GetKeyDown(KeyCode.E))
-                DialogPanel.InitializeDialogPanel(_dialog);
+            DialogPanel.InitializeDialogPanel(_dialog);
         }
     }
 }
