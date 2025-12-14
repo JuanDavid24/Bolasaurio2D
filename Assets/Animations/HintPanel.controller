@@ -37,7 +37,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: openHints
+    m_ConditionEvent: openHint
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8252492845646117786}
@@ -62,7 +62,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: closeHints
+    m_ConditionEvent: closeHint
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5374231089104042755}
@@ -87,13 +87,13 @@ AnimatorController:
   m_Name: HintPanel
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: openHints
+  - m_Name: openHint
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: closeHints
+  - m_Name: closeHint
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -175,7 +175,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: openHints
+    m_ConditionEvent: openHint
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8252492845646117786}
