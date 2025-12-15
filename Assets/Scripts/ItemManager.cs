@@ -7,6 +7,7 @@ public class ItemManager : MonoBehaviour
     public List<GameObject> gameItems;
     public Dictionary<GameObject, int> inventory = new Dictionary<GameObject, int>();
     [SerializeField] private CountPanelUI potionHPUI;
+    [SerializeField] private CountPanelUI ferrousOreUI;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +34,21 @@ public class ItemManager : MonoBehaviour
             }
         }
 
-        if (itemID == "PotionHP")
-            potionHPUI.AddQuantity(itemID, count);
+        UpdateUI(itemID, count);
     }
+
+    private void UpdateUI(string itemID, int count)
+    {
+        switch(itemID)
+        {
+            case "PotionHP":
+                potionHPUI.AddQuantity(itemID, count);
+                break;
+            case "FerrousOre":
+                ferrousOreUI.AddQuantity(itemID, count);
+                break;
+        }
+    } 
 
     public void PrintInventory()
     {
