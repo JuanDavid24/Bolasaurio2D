@@ -99,9 +99,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 4854039576412748311, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
-    - {fileID: 5563887898853390055, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
-    - {fileID: 85915501457444260, guid: fac32eb9ff9a432458995f464ca9e452, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -131,8 +130,8 @@ MonoBehaviour:
   _attackCooldown: 2
   pointA: {fileID: 4901251981218446901}
   pointB: {fileID: 8312049518182822562}
-  _patrolSpeed: 2
-  _chaseSpeed: 4
+  _patrolSpeed: 3
+  _chaseSpeed: 5
   _sightDistance: 5
   _attackDistance: 3
   _attackAnimationVelocity: 0

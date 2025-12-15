@@ -100,8 +100,8 @@ TextureImporter:
       name: Assets_0
       rect:
         serializedVersion: 2
-        x: 166
-        y: 115
+        x: 32
+        y: 384
         width: 16
         height: 16
       alignment: 0
@@ -3293,11 +3293,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: 8}
+      - - {x: -8, y: 8}
         - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: -1}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 3118065bf88b975489432865ac2951ca
@@ -3319,7 +3319,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: -1}
+      - - {x: -8, y: 1}
         - {x: -8, y: -8}
         - {x: 0, y: -8}
         - {x: 0, y: -8}
@@ -3365,10 +3365,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 1.0178909, y: -7.991699}
-        - {x: 0.7774124, y: -8}
+      - - {x: 0, y: -8}
+        - {x: 0, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: -1.9797974}
+        - {x: 8, y: 1}
       tessellationDetail: 0
       bones: []
       spriteID: 248e132ad93d3b84d8929c7d8282ec6e
@@ -3390,8 +3390,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: 8}
-        - {x: -8, y: -2}
+      - - {x: 8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
@@ -3710,7 +3709,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: 8}
+      - - {x: -8, y: 8}
         - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
@@ -3761,9 +3760,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 1.0261612, y: 8}
+      - - {x: 8, y: 8}
         - {x: -8, y: 0}
-        - {x: -8, y: -7.9999847}
+        - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
