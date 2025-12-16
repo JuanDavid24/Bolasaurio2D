@@ -8,6 +8,7 @@ public class DialogTrigger : MonoBehaviour
     [SerializeField] private List<string> _dialog;
     private bool _isPlayerInRange = false;
     [SerializeField] private Player _player;
+    [SerializeField] private bool _playOnce = false;
     void Start()
     {
         Col = GetComponent<Collider2D>();
@@ -33,11 +34,15 @@ public class DialogTrigger : MonoBehaviour
         }
     }
 
+    public void TriggerDialog() => DialogPanel.InitializeDialogPanel(_dialog);
+
     void Update()
     {
         if (_isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            DialogPanel.InitializeDialogPanel(_dialog);
+            TriggerDialog();
+            if (_playOnce)
+                Destroy(this.gameObject, 2f);
         }
     }
 }

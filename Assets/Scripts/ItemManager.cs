@@ -37,6 +37,20 @@ public class ItemManager : MonoBehaviour
         UpdateUI(itemID, count);
     }
 
+    public int GetItemCount(string itemID)
+    { 
+        int count = 0;
+        foreach (KeyValuePair<GameObject, int> item in inventory)
+        {
+            PickUp invItem = item.Key.GetComponent<PickUp>();
+            if (invItem.itemID == itemID)
+            {
+                count += inventory[item.Key];
+            }
+        }
+        return count;
+    }
+
     private void UpdateUI(string itemID, int count)
     {
         switch(itemID)

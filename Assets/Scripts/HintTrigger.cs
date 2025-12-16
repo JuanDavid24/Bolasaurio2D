@@ -33,7 +33,7 @@ public class HintTrigger : MonoBehaviour
             HintPanel.InitializeHintPanel(_hintSentences, _sentenceDelay);
             _justPlayed = true;
             if (_playOnce)
-                gameObject.SetActive(false);
+                Destroy(this.gameObject, 0.5f);
         }
     }
 }
